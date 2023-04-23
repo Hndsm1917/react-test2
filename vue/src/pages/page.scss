@@ -1,0 +1,47 @@
+.page {
+  &__container {
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    max-width: em(1180);
+    height: em(300);
+  }
+
+  &__title {
+    text-align: center;
+    margin-top: em(3);
+    margin-right: em(23);
+  }
+
+  &__font {
+    &--title {
+      font-size: em(34);
+      //line-height: em(20, 20);
+      font-weight: 400;
+      letter-spacing: 0.03em;
+      margin: 0;
+    }
+  }
+
+  &__zig-zag {
+    display: flex;
+    gap: em(80);
+
+    &--reverse {
+      flex-direction: row-reverse;
+    }
+  }
+
+  &__card {
+    height: 100%;
+    width: em(341);
+  }
+
+  &__grid {
+    display: grid;
+    width: 100%;
+    grid-auto-rows: em(99);
+    gap: em(55);
+    margin-top: em(61);
+  }
+}
