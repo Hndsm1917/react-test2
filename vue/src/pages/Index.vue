@@ -3,7 +3,7 @@
     <div class="page__container index-page__container">
       <div class="page__title">
         <h1 class="page__font page__font--title">
-          Котлеты столовские куриные
+          Котлеты столовские куриные 
         </h1>
       </div>
 
@@ -15,9 +15,12 @@
           :class="[{'page__zig-zag--reverse': isOdd(index)}]"
         >
           <Card 
-            class="page__card"
             v-for="(item, id) in row" 
             :key="id" 
+            class="page__card"
+            :is-last-in-row="isLastInRow(row, id + 1) && !isLastInList(id + 1)"
+            :is-last="isLastInRow(row, id + 1) && isLastInList(index + 1, id + 1)"
+            :is-odd="isOdd(index)"
             :text="item"
           />
         </div>
@@ -25,12 +28,14 @@
     </div>
   </div>
 </template>
-
+          
 <script setup>
 import { computed } from 'vue';
 import './page.scss';
 import Card from '@/components/Card.vue';
 import data from '@/config/recipe';
+
+const GRID_LENGTH = 3;
 
 const chunkedData = computed(() => {
   let arr = [];
@@ -44,7 +49,9 @@ const chunkedData = computed(() => {
   return arr;
 });
 
-let isOdd = (num) => num % 2;
+const isOdd = (num) => Boolean(num % 2);
+const isLastInRow = (arr, id) => arr.length === id;
+const isLastInList = (index, id) => index * id === data.length || id < GRID_LENGTH;
 </script>
 
 <style scoped lang="scss">
